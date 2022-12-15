@@ -1,10 +1,10 @@
-<a href="#" class="list-group-item" aria-current="true">
-    <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{ character.name }}</h5>
-    </div>
-    <div>
-        <button class="btn btn-primary">Light</button>
-        <button class="btn btn-danger">Dark</button>
-    </div>
-    <!-- <small>And some small print.</small> -->
+<a href="#" class="list-group-item">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">{{ character.name }}</h5>
+  </div>
+  <div>
+    <button class="btn btn-primary" (click)="onAssignClick('light')">Light</button>
+    <button class="btn btn-danger" (click)="onAssignClick('dark')">Dark</button>
+  </div>
+  <!-- <small>And some small print.</small> -->
 </a>
