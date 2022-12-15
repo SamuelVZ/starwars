@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Character } from '../../Models/Character';
 
 @Component({
   selector: 'app-item',
@@ -6,11 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit {
-  character: any;
+  @Input() character!: Character;
+  @Output() sideAssigned = new EventEmitter<Character>();
+
+
 
   constructor() { }
-
   ngOnInit(): void {
   }
 
+  onAssignClick(sideItem: string){
+      // this.character.side = sideAssigned
+      const returnCharacter: Character = {name: this.character.name, side: sideItem};
+
+      this.sideAssigned.emit(returnCharacter);
+  }
 }
