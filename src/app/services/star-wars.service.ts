@@ -1,23 +1,28 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Character } from '../Models/Character';
 import { LogService } from './log.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StarWarsService {
-  private logService: LogService;
+  // private logService: LogService;
   characterChanched = new Subject<void>();
 
-  constructor(logService: LogService) {
-    this.logService = logService;
+  constructor(private logService: LogService, private http: HttpClient) {
+    // this.logService = logService;
   }
 
   private characters: Character[] = [
     { name: 'Luke', side: '' },
     { name: 'Darth Vader', side: '' },
   ];
+
+  fetchCharacters(): Observable<any> {
+    return this.http.get('https://swapi.dev/api/people');
+  }
 
   getCharacters(choosenList: string): Character[] {
     if (choosenList === 'all') {
@@ -43,5 +48,6 @@ export class StarWarsService {
     }
     const newCharacter: Character = { name: newName, side: newSide };
     this.characters.push(newCharacter);
+    this.characterChanched.next();
   }
 }
