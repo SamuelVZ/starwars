@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { StarWarsService } from 'src/app/services/star-wars.service';
 import { Character } from '../../Models/Character';
 
@@ -9,7 +9,6 @@ import { Character } from '../../Models/Character';
 })
 export class ItemComponent implements OnInit {
   @Input() character!: Character;
-  @Output() sideAssigned = new EventEmitter<Character>();
 
   starWarsService: StarWarsService;
 
@@ -20,10 +19,8 @@ export class ItemComponent implements OnInit {
   }
 
   onAssignClick(sideItem: string){
-      // this.character.side = sideAssigned
       const returnCharacter: Character = {name: this.character.name, side: sideItem};
 
-      // this.sideAssigned.emit(returnCharacter);
       this.starWarsService.onSideAssignedTab(returnCharacter);
   }
 }
