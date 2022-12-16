@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Character } from '../../Models/Character';
 
 @Component({
@@ -8,13 +8,9 @@ import { Character } from '../../Models/Character';
 })
 export class ListComponent implements OnInit {
   @Input() listCharacters: Character[] = [];
-  @Output() sideAssigned = new EventEmitter<Character>()
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onSideAssigned(event : any){
-    this.sideAssigned.emit(event);
-  }
 }
