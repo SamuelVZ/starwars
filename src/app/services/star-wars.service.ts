@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Character } from '../Models/Character';
+import { LogService } from './log.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StarWarsService {
-  constructor() { }
+  private logService: LogService;
+
+  constructor(logService: LogService) {
+    this.logService = logService;
+   }
 
   private characters: Character[] = [
     {name: 'Luke', side: ''},
@@ -23,8 +28,9 @@ export class StarWarsService {
   }
 
 
-  onSideAssignedTab(char: Character){
+  onSideAssigned(char: Character){
     const pos = this.characters.findIndex(c => c.name === char.name);
     this.characters[pos].side = char.side;
+    this.logService.writeLog('changed side of ' + char.name + ' to be: ' + char.side);
   }
 }
