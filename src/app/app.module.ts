@@ -12,20 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
-const routes: Routes = [
-  {
-    path: 'characters',
-    component: TabsComponent,
-    children: [
-      //children are to detect children routes inside the parent route
-      { path: '', redirectTo: 'all', pathMatch: 'full' },
-      { path: ':side', component: ListComponent },
-    ],
-  },
-  { path: 'new-character', component: CreateCharacterComponent },
-  { path: '**', redirectTo: '/characters' },
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -36,12 +23,7 @@ const routes: Routes = [
     CreateCharacterComponent,
     NavbarComponent,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule.forRoot(routes),
-  ],
+  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [StarWarsService, LogService],
   bootstrap: [AppComponent],
 })
