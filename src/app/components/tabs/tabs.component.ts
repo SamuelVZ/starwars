@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Character } from '../../Models/Character';
+import { StarWarsService } from '../../services/star-wars.service';
 
 @Component({
   selector: 'app-tabs',
@@ -8,34 +9,25 @@ import { Character } from '../../Models/Character';
 })
 export class TabsComponent implements OnInit {
 
-  characters: Character[] = [
-    {name: 'Luke', side: ''},
-    {name: 'Darth Vader', side: ''}
-  ];
-
+  characters!: Character[];
   choosenList = 'all';
+  starWarsService: StarWarsService;
 
 
-  constructor() { }
+  constructor(starWarsService: StarWarsService) {
+    this.starWarsService = starWarsService;
+   }
 
   ngOnInit(): void {
   }
+
   getCharacters(): Character[]{
-
-    if(this.choosenList === 'all'){
-      return this.characters.slice(); //slice returns a copy of the array
-    }
-
-    return this.characters.filter(c => c.side === this.choosenList);
+    this.characters = this.starWarsService.getCharacters(this.choosenList);
+    return this.characters;
   }
 
   onChoose(sideChoosen: string){
     this.choosenList = sideChoosen;
-  }
-
-  onSideAssignedTab(event: any){
-    const pos = this.characters.findIndex(char => char.name === event.name);
-    this.characters[pos].side = event.side;
   }
 
 }
