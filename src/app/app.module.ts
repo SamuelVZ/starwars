@@ -10,6 +10,21 @@ import { LogService } from './services/log.service';
 import { CreateCharacterComponent } from './components/create-character/create-character.component';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: 'characters',
+    component: TabsComponent,
+    children: [
+      //children are to detect children routes inside the parent route
+      { path: '', redirectTo: 'all', pathMatch: 'full' },
+      { path: ':side', component: ListComponent },
+    ],
+  },
+  { path: 'new-character', component: CreateCharacterComponent },
+  { path: '**', redirectTo: '/characters' },
+];
 
 @NgModule({
   declarations: [
@@ -20,7 +35,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     CreateCharacterComponent,
     NavbarComponent,
   ],
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
   providers: [StarWarsService, LogService],
   bootstrap: [AppComponent],
 })
