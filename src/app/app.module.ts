@@ -8,6 +8,7 @@ import { ItemComponent } from './components/item/item.component';
 import { StarWarsService } from './services/star-wars.service';
 import { LogService } from './services/log.service';
 import { CreateCharacterComponent } from './components/create-character/create-character.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,12 +16,10 @@ import { CreateCharacterComponent } from './components/create-character/create-c
     TabsComponent,
     ListComponent,
     ItemComponent,
-    CreateCharacterComponent
+    CreateCharacterComponent,
   ],
-  imports: [
-    BrowserModule
-  ],
+  imports: [BrowserModule, FormsModule],
   providers: [StarWarsService, LogService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
