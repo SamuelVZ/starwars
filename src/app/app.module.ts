@@ -9,6 +9,7 @@ import { StarWarsService } from './services/star-wars.service';
 import { LogService } from './services/log.service';
 import { CreateCharacterComponent } from './components/create-character/create-character.component';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     ListComponent,
     ItemComponent,
     CreateCharacterComponent,
+    NavbarComponent,
   ],
   imports: [BrowserModule, FormsModule],
   providers: [StarWarsService, LogService],
