@@ -21,6 +21,6 @@ export class ItemComponent implements OnInit {
   onAssignClick(sideItem: string){
       const returnCharacter: Character = {name: this.character.name, side: sideItem};
 
-      this.starWarsService.onSideAssignedTab(returnCharacter);
+      this.starWarsService.onSideAssigned(returnCharacter);
   }
 }
